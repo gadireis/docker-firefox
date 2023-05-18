@@ -35,27 +35,27 @@ ARG LZ4_URL=https://github.com/lz4/lz4/archive/v${LZ4_VERSION}.tar.gz
 WORKDIR /tmp
 
 # Install JSONLZ4 tools.
-RUN \
-    add-pkg --virtual build-dependencies \
-        curl \
-        build-base \
-        && \
-    mkdir jsonlz4 && \
-    mkdir lz4 && \
-    curl -# -L {$JSONLZ4_URL} | tar xz --strip 1 -C jsonlz4 && \
-    curl -# -L {$LZ4_URL} | tar xz --strip 1 -C lz4 && \
-    mv jsonlz4/src/ref_compress/*.c jsonlz4/src/ && \
-    cp lz4/lib/lz4.* jsonlz4/src/ && \
-    cd jsonlz4 && \
-    gcc -static -Wall -o dejsonlz4 src/dejsonlz4.c src/lz4.c && \
-    gcc -static -Wall -o jsonlz4 src/jsonlz4.c src/lz4.c && \
-    strip dejsonlz4 jsonlz4 && \
-    cp -v dejsonlz4 /usr/bin/ && \
-    cp -v jsonlz4 /usr/bin/ && \
-    cd .. && \
-    # Cleanup.
-    del-pkg build-dependencies && \
-    rm -rf /tmp/* /tmp/.[!.]*
+#RUN \
+#    add-pkg --virtual build-dependencies \
+#        curl \
+#        build-base \
+#       && \
+#    mkdir jsonlz4 && \
+#    mkdir lz4 && \
+#    curl -# -L {$JSONLZ4_URL} | tar xz --strip 1 -C jsonlz4 && \
+#    curl -# -L {$LZ4_URL} | tar xz --strip 1 -C lz4 && \
+#    mv jsonlz4/src/ref_compress/*.c jsonlz4/src/ && \
+#    cp lz4/lib/lz4.* jsonlz4/src/ && \
+#    cd jsonlz4 && \
+#    gcc -static -Wall -o dejsonlz4 src/dejsonlz4.c src/lz4.c && \
+#    gcc -static -Wall -o jsonlz4 src/jsonlz4.c src/lz4.c && \
+#   strip dejsonlz4 jsonlz4 && \
+#    cp -v dejsonlz4 /usr/bin/ && \
+#    cp -v jsonlz4 /usr/bin/ && \
+#    cd .. && \
+#    # Cleanup.
+#    del-pkg build-dependencies && \
+#    rm -rf /tmp/* /tmp/.[!.]*
 
 # Install Firefox.
 RUN \
