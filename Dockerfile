@@ -16,7 +16,7 @@ RUN strip membarrier_check
 FROM jlesage/baseimage-gui:alpine-3.15-v3.5.8
 
 # Docker image version is provided via build arg.
-ARG DOCKER_IMAGE_VERSION=unknown
+ARG DOCKER_IMAGE_VERSION=1.18.0
 
 # Define software versions.
 ARG FIREFOX_VERSION=94.0-r0
